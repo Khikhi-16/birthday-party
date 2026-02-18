@@ -2,9 +2,78 @@
 <html>
 <head>
   <title>My Birthday World</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4e88;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff2e6d;
+    }
+  </style>
 </head>
+
 <body>
+
+<div class="container" id="entryScreen">
   <h1>Welcome to My Birthday Party 🎂</h1>
-  <p>Under Construction...</p>
+  <p>Before entering, tell me your name 😌</p>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <br>
+  <button onclick="enterParty()">Enter Party</button>
+</div>
+
+<div class="container" id="welcomeScreen" style="display:none;">
+  <h1 id="welcomeText"></h1>
+  <p>Door opening soon... 🚪</p>
+</div>
+
+<script>
+  function enterParty() {
+    var name = document.getElementById("nameInput").value;
+    if(name.trim() === "") {
+      alert("Please enter your name 😌");
+      return;
+    }
+
+    localStorage.setItem("guestName", name);
+
+    document.getElementById("entryScreen").style.display = "none";
+    document.getElementById("welcomeScreen").style.display = "block";
+    document.getElementById("welcomeText").innerText = "Hey " + name + " 👀";
+  }
+</script>
+
 </body>
 </html>
