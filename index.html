@@ -1,131 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Birthday World</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ffdde1, #ee9ca7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .container {
-      text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: all 0.6s ease;
-    }
-
-    input {
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #ff4e88;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #ff2e6d;
-    }
-
-    .avatar {
-      display: inline-block;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 15px;
-      background: #f8f8f8;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .avatar:hover {
-      background: #ffe0ec;
-      transform: scale(1.1);
-    }
-
-  </style>
+  <title>Legendary Birthday World 🎂</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="container" id="entryScreen">
-  <h1>Welcome to My Birthday Party 🎂</h1>
-  <p>Before entering, tell me your name 😌</p>
-  <input type="text" id="nameInput" placeholder="Enter your name">
-  <br>
-  <button onclick="enterParty()">Enter Party</button>
-</div>
-
-<div class="container" id="welcomeScreen" style="display:none;">
-  <h1 id="welcomeText"></h1>
-  <p>Are you ready to enter? 🚪</p>
-  <button onclick="openDoor()">Open The Door</button>
-</div>
-
-<div class="container" id="avatarScreen" style="display:none;">
-  <h1>Choose Your Character 🎭</h1>
-
-  <div class="avatar" onclick="selectAvatar('Party Animal 🕺')">
-    Party Animal 🕺
+  <!-- Screen 1: Name -->
+  <div class="screen" id="nameScreen">
+    <h1>Welcome 🎉</h1>
+    <input type="text" id="guestName" placeholder="Enter your name">
+    <button onclick="goToAvatar()">Enter</button>
   </div>
 
-  <div class="avatar" onclick="selectAvatar('Sweet Guest 🍭')">
-    Sweet Guest 🍭
+  <!-- Screen 2: Avatar -->
+  <div class="screen hidden" id="avatarScreen">
+    <h1>Select Avatar 🎭</h1>
+    <button onclick="selectAvatar('party')">Party 🎈</button>
+    <button onclick="selectAvatar('sweet')">Sweet 🍭</button>
   </div>
 
-  <div class="avatar" onclick="selectAvatar('Drama Queen 👑')">
-    Drama Queen 👑
+  <!-- Screen 3: Door -->
+  <div class="screen hidden" id="doorScreen">
+    <h1>Opening Door 🚪</h1>
+    <button onclick="enterHall()">Enter Hall</button>
   </div>
 
-  <div class="avatar" onclick="selectAvatar('Silent Observer 😎')">
-    Silent Observer 😎
+  <!-- Screen 4: Hall -->
+  <div class="screen hidden" id="hallScreen">
+    <h1>Main Hall 🎂</h1>
+    <p id="welcomeText"></p>
+    <button onclick="goToThankYou()">Continue</button>
   </div>
 
-</div>
+  <!-- Screen 5: Thank You -->
+  <div class="screen hidden" id="thankYouScreen">
+    <h1>Thank You For Coming 💖</h1>
+  </div>
 
-<script>
-
-function enterParty() {
-  var name = document.getElementById("nameInput").value;
-  if(name.trim() === "") {
-    alert("Please enter your name 😌");
-    return;
-  }
-
-  localStorage.setItem("guestName", name);
-
-  document.getElementById("entryScreen").style.display = "none";
-  document.getElementById("welcomeScreen").style.display = "block";
-  document.getElementById("welcomeText").innerText = "Hey " + name + " 👀";
-}
-
-function openDoor() {
-  document.getElementById("welcomeScreen").style.display = "none";
-  document.getElementById("avatarScreen").style.display = "block";
-}
-
-function selectAvatar(type) {
-  localStorage.setItem("guestAvatar", type);
-  alert("You selected: " + type + " 🎉");
-}
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
